@@ -55,7 +55,7 @@ neu run --arch x64
 echo
 
 echo -e "\e[1;33mCreating environment to run neu with flag --frontend-lib-dev"
-git clone git@github.com:pathange-s/neutralinojs-react.git
+git clone https://github.com/pathange-s/neutralinojs-react.git
 echo
 cd neutralinojs-react && cd myapp-react && gnome-terminal -- npm start
 
