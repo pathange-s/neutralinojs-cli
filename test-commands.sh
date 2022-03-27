@@ -120,5 +120,3 @@ echo
 commandRun "neu plugins --help"
 neu plugins --help
 echo
-
-sudo rm -r ../testNeuCLI
