@@ -54,18 +54,20 @@ commandRun "neu run --arch"
 neu run --arch x64
 echo
 
-# echo -e "\e[1;33mCreating environment to run neu with flag --frontend-lib-dev"
-# git clone https://github.com/pathange-s/neutralinojs-react.git
-# echo
-# cd neutralinojs-react && cd myapp-react && gnome-terminal -- npm start
-# commandRun "neu run --frontend-lib-dev"
-# until [ ! -z "$(sudo netstat -tulpn | grep :3000)" ];
-# do
-#   echo "starting development server"
-#   sleep 1s
-# done
-# cd .. && neu run --frontend-lib-dev
-# echo
+echo -e "\e[1;33mCreating environment to run neu with flag --frontend-lib-dev"
+git clone https://github.com/pathange-s/neutralinojs-react.git
+echo
+cd neutralinojs-react && cd myapp-react && npm start &
+commandRun "neu run --frontend-lib-dev"
+until [ ! -z "$(sudo netstat -tulpn | grep :3000)" ];
+do
+  echo "starting development server"
+  sleep 1s
+done
+pwd
+cd neutralinojs-react && neu run --frontend-lib-dev
+sudo kill `lsof -t -i:3000`
+echo
 
 commandRun "neu run --help"
 neu run --help
