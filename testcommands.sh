@@ -19,7 +19,8 @@ pwd
 echo "updating neu"
 npm install -g @neutralinojs/neu
 
-# npm link
+npm link
 
 echo "list plugins"
 neu plugins
+echo $1
