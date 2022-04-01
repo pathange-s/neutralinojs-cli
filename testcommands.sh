@@ -23,4 +23,4 @@ npm link
 
 echo "list plugins"
 neu plugins
-echo $1
+echo $?
