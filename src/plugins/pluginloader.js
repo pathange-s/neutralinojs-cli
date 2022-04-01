@@ -1,4 +1,3 @@
-
 const path = require('path');
 const { exec } = require('child_process');
 const package = require('../../package.json');
@@ -7,7 +6,7 @@ const Configstore = require('configstore');
 const config = new Configstore(package.name);
 const utils = require('../utils');
 
-module.exports.registerPlugins = async (program, modules) => {
+module.exports.registerPlugins = (program, modules) => {
     if(!config.has('plugins'))
         return;
     for(let pluginName of config.get('plugins')) {
@@ -20,71 +19,52 @@ module.exports.registerPlugins = async (program, modules) => {
         }
         catch(e) {
             utils.error(`Unable to load ${pluginName} plugin.`);
-            try {
-                utils.log(`Attempting to install ${pluginName}`);
-                await add(pluginName);
-            }
-            catch(e) {
-                utils.error(e);
-            }
         }
     }
 }
 
-let add = (pluginName) => {
+module.exports.add = (packageName) => {
     return new Promise((resolve, reject) => {
         let plugins = [];
         if(config.has('plugins'))
             plugins = config.get('plugins');
-        if(!isPluginInstalled(pluginName)) {
-            exec(`cd ${NEU_ROOT} && npm install --save ${pluginName}`, (err, stdout, stderr) => {
+        if(!plugins.includes(packageName)) {
+            exec(`cd ${NEU_ROOT} && npm install --save ${packageName}`, (err, stdout, stderr) => {
                 if (err) {
                     reject(stderr);
                 }
                 else {
-                    if(!plugins.includes(pluginName)) {
-                        plugins.push(pluginName);
-                        config.set('plugins', plugins);
-                        resolve();
-                    }
-                }
-            });
-        }
-        else {
-            reject(`${pluginName} is already installed!`);
-        }
-    });
-};
-
-let isPluginInstalled = (pluginName) => {
-    try {
-        var package = require(pluginName);
-        return true;
-    }
-    catch (e) {
-        return false;
-    }
-}
-
-module.exports.remove = (pluginName, uninstallSuccessCallback) => {
-    return new Promise((resolve, reject) => {
-        let plugins = [];
-        if(config.has('plugins'))
-            plugins = config.get('plugins');
-        if(plugins.includes(pluginName)) {
-            exec(`cd ${NEU_ROOT} && npm uninstall --save ${pluginName}`, (err, stdout, stderr) => {
-                if (err) {
-                    reject(stderr);
-                }
-                else {
-                    plugins.splice(plugins.indexOf(pluginName), 1);
+                    plugins.push(packageName);
                     config.set('plugins', plugins);
                     resolve();
                 }
             });
         }
         else {
-            reject(`Unable to find ${pluginName}!`);
+            reject(`${packageName} is already installed!`);
+        }
+    });
+};
+
+module.exports.remove = (packageName, uninstallSuccessCallback) => {
+    return new Promise((resolve, reject) => {
+        let plugins = [];
+        if(config.has('plugins'))
+            plugins = config.get('plugins');
+        if(plugins.includes(packageName)) {
+            exec(`cd ${NEU_ROOT} && npm uninstall --save ${packageName}`, (err, stdout, stderr) => {
+                if (err) {
+                    reject(stderr);
+                }
+                else {
+                    plugins.splice(plugins.indexOf(packageName), 1);
+                    config.set('plugins', plugins);
+                    resolve();
+                }
+            });
+        }
+        else {
+            reject(`Unable to find ${packageName}!`);
         }
     });
 };
@@ -95,5 +75,3 @@ module.exports.list = () => {
     for(let plugin of config.get('plugins'))
         console.log(plugin);
 }
-
-module.exports.add = add;
