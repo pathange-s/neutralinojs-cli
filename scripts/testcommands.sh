@@ -4,6 +4,8 @@ set -e
 mkdir testNeuCLI
 cd testNeuCLI
 
+sudo find / -name libwebkit2gtk-4.0.so.37
+
 # NEU
 
 displayCmd(){
