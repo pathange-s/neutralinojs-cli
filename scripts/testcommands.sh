@@ -42,6 +42,11 @@ echo
 
 # run
 
+sudo apt-get install xvfb
+sudo apt-get install x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
+Xvfb :19 -screen 0 1024x768x16 &
+export DISPLAY=:19
+
 echoGreen "Creating a sample app before running neu run & neu build"
 neu create myapp-run
 cd myapp-run
