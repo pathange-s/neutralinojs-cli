@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+ldconfig --version
+
 ldconfig -p | grep libwebkit2gtk-4.0.so.37
 
 # mkdir testNeuCLI
