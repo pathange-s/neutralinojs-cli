@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+sudo rm -r testNeuCLI
 mkdir testNeuCLI
 cd testNeuCLI
 
