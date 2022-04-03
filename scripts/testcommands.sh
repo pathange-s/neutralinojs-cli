@@ -42,7 +42,7 @@ echo
 
 # run
 
-# sudo apt-get install xvfb
+sudo apt-get install -y libwebkit2gtk-4.0-37
 
 echoGreen "Creating a sample app before running neu run & neu build"
 neu create myapp-run
