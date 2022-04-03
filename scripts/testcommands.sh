@@ -1,10 +1,16 @@
 #!/bin/bash
 set -e
 
+function cleanup {
+  echo "Removing testNeuCLI"
+  sudo rm -r ../../../testNeuCLI
+}
+trap cleanup EXIT
+
 mkdir testNeuCLI
 cd testNeuCLI
 
-sudo find / -name libwebkit2gtk-4.0.so.37
+ldconfig -p | grep libwebkit2gtk-4.0.so.37
 
 # NEU
 
@@ -130,6 +136,3 @@ echo
 displayCmd "neu plugins --help"
 neu plugins --help
 echo
-
-pwd
-sudo rm -r ../../../testNeuCLI
