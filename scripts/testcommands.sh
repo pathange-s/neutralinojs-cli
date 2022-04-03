@@ -13,7 +13,7 @@ displayCmd(){
 echoGreen(){
     echo -e "\e[1;32m$1"
 }
-echo $LD_LIBRARY_PATH
+
 echo -e "\e[1;32mTesting Neutralinojs CLI commands\n"
 
 displayCmd "neu --help"
@@ -42,7 +42,7 @@ echo
 
 # run
 
-sudo apt-get install xvfb
+# sudo apt-get install xvfb
 
 echoGreen "Creating a sample app before running neu run & neu build"
 neu create myapp-run
