@@ -43,22 +43,32 @@ echo
 # run
 
 sudo apt-get update
-sudo apt-get install -y libwebkit2gtk-4.0-37
+sudo apt-get install \
+    libayatana-appindicator3-1 \
+    libwebkit2gtk-4.0-37 \
+sudo apt install xvfb
+
 echoGreen "Creating a sample app before running neu run & neu build"
 neu create myapp-run
 cd myapp-run
 echo
 
 displayCmd "neu run"
-neu run
+xvfb-run neu run &
+sleep 10
+kill -HUP $(pgrep neutralino)
 echo
 
 displayCmd "neu run --disable-auto-reload"
-neu run --disable-auto-reload
+xvfb-run neu run --disable-auto-reload &
+sleep 10
+kill -HUP $(pgrep neutralino)
 echo
 
 displayCmd "neu run --arch"
-neu run --arch x64
+xvfb-run neu run --arch x64 &
+sleep 10
+kill -HUP $(pgrep neutralino)
 echo
 
 echoGreen "Creating the environment to run the app with flag --frontend-lib-dev"
@@ -73,7 +83,9 @@ do
   echo "starting development server"
   sleep 3s
 done
-cd .. && neu run --frontend-lib-dev
+cd .. && xvfb-run neu run --frontend-lib-dev &
+sleep 10
+kill -HUP $(pgrep neutralino)
 sudo kill `lsof -t -i:3000`
 echo
 
