@@ -43,9 +43,10 @@ echo
 # run
 
 sudo apt-get update
-sudo apt-get install \
-    libayatana-appindicator3-1 \
-    libwebkit2gtk-4.0-37 \
+# sudo apt-get install \
+#     libayatana-appindicator3-1 \
+#     libwebkit2gtk-4.0-37 \
+
 sudo apt install xvfb
 
 echoGreen "Creating a sample app before running neu run & neu build"
