@@ -13,7 +13,7 @@ displayCmd(){
 echoGreen(){
     echo -e "\e[1;32m$1"
 }
-
+echo $LD_LIBRARY_PATH
 echo -e "\e[1;32mTesting Neutralinojs CLI commands\n"
 
 displayCmd "neu --help"
