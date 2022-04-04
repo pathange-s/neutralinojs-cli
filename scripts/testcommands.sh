@@ -46,6 +46,7 @@ sudo apt-get update
 sudo apt-get install libayatana-appindicator3-1
 sudo apt-get install libwebkit2gtk-4.0-37
 sudo apt-get install dbus-x11
+sudo apt install at-spi2-core
 sudo apt install xvfb
 
 echoGreen "Creating a sample app before running neu run & neu build"
@@ -98,6 +99,9 @@ neu run --help
 echo
 
 # build
+
+neu create myapp-build
+cd myapp-build
 
 displayCmd "neu build"
 neu build
