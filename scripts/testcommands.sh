@@ -57,21 +57,21 @@ cd myapp-run
 echo
 
 displayCmd "neu run"
-xvfb-run neu run &
+xvfb-run neu run
 sleep 20s
 kill -HUP $(pgrep neutralino)
 sleep 10s
 echo
 
 displayCmd "neu run --disable-auto-reload"
-xvfb-run neu run --disable-auto-reload &
+xvfb-run neu run --disable-auto-reload
 sleep 20s
 kill -HUP $(pgrep neutralino)
 sleep 10s
 echo
 
 displayCmd "neu run --arch"
-xvfb-run neu run --arch x64 &
+xvfb-run neu run --arch x64
 sleep 20s
 kill -HUP $(pgrep neutralino)
 sleep 10s
@@ -89,7 +89,7 @@ do
   echo "starting development server"
   sleep 3s
 done
-cd .. && xvfb-run neu run --frontend-lib-dev &
+cd .. && xvfb-run neu run --frontend-lib-dev
 sleep 20s
 kill -HUP $(pgrep neutralino)
 sleep 10s
