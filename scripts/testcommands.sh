@@ -43,11 +43,12 @@ echo
 # run
 
 sudo apt-get update
-sudo apt-get install libayatana-appindicator3-1
-sudo apt-get install libwebkit2gtk-4.0-37
-sudo apt-get install dbus-x11
-sudo apt install at-spi2-core
-sudo apt install xvfb
+sudo apt install \
+    libwebkit2gtk-4.0-37 \
+    libayatana-appindicator3-1 \
+    dbus-x11 \
+    at-spi2-core \
+    xvfb
 
 echoGreen "Creating a sample app before running neu run & neu build"
 neu create myapp-run
@@ -148,6 +149,3 @@ echo
 displayCmd "neu plugins --help"
 neu plugins --help
 echo
-
-pwd
-sudo rm -r ../../../testNeuCLI
