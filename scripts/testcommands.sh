@@ -45,7 +45,7 @@ echo
 sudo apt-get update
 sudo apt-get install libayatana-appindicator3-1
 sudo apt-get install libwebkit2gtk-4.0-37
-
+sudo apt-get install dbus-x11
 sudo apt install xvfb
 
 echoGreen "Creating a sample app before running neu run & neu build"
