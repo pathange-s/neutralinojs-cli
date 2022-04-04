@@ -55,20 +55,23 @@ echo
 
 displayCmd "neu run"
 xvfb-run neu run &
-sleep 10
+sleep 20s
 kill -HUP $(pgrep neutralino)
+sleep 10s
 echo
 
 displayCmd "neu run --disable-auto-reload"
 xvfb-run neu run --disable-auto-reload &
-sleep 10
+sleep 20s
 kill -HUP $(pgrep neutralino)
+sleep 10s
 echo
 
 displayCmd "neu run --arch"
 xvfb-run neu run --arch x64 &
-sleep 10
+sleep 20s
 kill -HUP $(pgrep neutralino)
+sleep 10s
 echo
 
 echoGreen "Creating the environment to run the app with flag --frontend-lib-dev"
@@ -84,8 +87,9 @@ do
   sleep 3s
 done
 cd .. && xvfb-run neu run --frontend-lib-dev &
-sleep 10
+sleep 20s
 kill -HUP $(pgrep neutralino)
+sleep 10s
 sudo kill `lsof -t -i:3000`
 echo
 
