@@ -42,13 +42,14 @@ echo
 
 # run
 
-sudo apt-get update
-sudo apt install \
-    libwebkit2gtk-4.0-37 \
-    libayatana-appindicator3-1 \
-    dbus-x11 \
-    at-spi2-core \
-    xvfb
+echoGreen "Installing required packages"
+sudo apt-get update > /dev/null 2>&1
+sudo apt install > /dev/null 2>&1 \
+    libwebkit2gtk-4.0-37 > /dev/null 2>&1 \
+    libayatana-appindicator3-1 > /dev/null 2>&1 \
+    dbus-x11 > /dev/null 2>&1 \
+    at-spi2-core > /dev/null 2>&1 \
+    xvfb > /dev/null 2>&1
 
 echoGreen "Creating a sample app before running neu run & neu build"
 neu create myapp-run
@@ -80,7 +81,7 @@ echoGreen "Creating the environment to run the app with flag --frontend-lib-dev"
 echo
 neu create myapp-react --template codezri/neutralinojs-react
 echo
-cd myapp-react && cd react-src && npm i && npm run build
+cd myapp-react && cd react-src && npm i > /dev/null 2>&1 && npm run build  > /dev/null 2>&1
 npm start &
 displayCmd "neu run --frontend-lib-dev"
 until [ ! -z "$(sudo netstat -tulpn | grep :3000)" ];
