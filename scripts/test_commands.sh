@@ -14,6 +14,35 @@ echoGreen(){
 
 echo -e "\e[1;32mTesting Neutralinojs CLI commands\n"
 
+# Check if plugins remain after updating CLI
+
+echoGreen "uninstalling current version of neu"
+npm uninstall -g @neutralinojs/neu
+echoGreen "installing neu 8.1.0 (older version)"
+npm install -g @neutralinojs/neu@8.1.0
+echoGreen "check neu version"
+neu version
+
+echoGreen "Add plugin"
+neu plugins --add @neutralinojs/appify
+ 
+echoGreen "updating neu"
+npm install -g @neutralinojs/neu
+ 
+npm link
+
+# Check if list of plugins has previously installed plugins 
+# Attempt to install plugin occurs
+
+echoGreen "list plugins"
+neu plugins
+
+echoGreen "list plugins after reinstalling it"
+neu plugins
+
+echoGreen "Removing plugin to revert to initial state"
+neu plugins --remove @neutralinojs/appify
+
 # neu
 
 displayCmd "neu --help"
@@ -141,32 +170,3 @@ echo
 displayCmd "neu plugins --help"
 neu plugins --help
 echo
-
-# Check if plugins remain after updating CLI
-
-echoGreen "uninstalling current version of neu"
-npm uninstall -g @neutralinojs/neu
-echoGreen "installing neu 8.1.0 (older version)"
-npm install -g @neutralinojs/neu@8.1.0
-echoGreen "check neu version"
-neu version
-
-echoGreen "Add plugin"
-neu plugins --add @neutralinojs/appify
- 
-echoGreen "updating neu"
-npm install -g @neutralinojs/neu
- 
-npm link
-
-# Check if list of plugins has previously installed plugins 
-# Attempt to install plugin occurs
-
-echoGreen "list plugins"
-neu plugins
-
-echoGreen "list plugins after reinstalling it"
-neu plugins
-
-echoGreen "Removing plugin to revert to initial state"
-neu plugins --remove @neutralinojs/appify
