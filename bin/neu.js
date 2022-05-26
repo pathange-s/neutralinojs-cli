@@ -9,4 +9,4 @@ neu.bootstrap(program);
 
 program.addHelpText('beforeAll', utils.getFiglet());
 program.parse(process.argv);
-
+console.log("testing");
